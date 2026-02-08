@@ -1,1 +1,14 @@
-
+{
+  "name": "latimore-strategic-advisor-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Latimore Life & Legacy Strategic Advisor",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "vercel dev",
+    "api": "node api/strategic-advisor.js"
+  },
+  "dependencies": {
+    "openai": "4.28.0"
+  }
+}
