@@ -13,11 +13,12 @@ export default async function handler(req, res) {
     const SYSTEM_PROMPT = `
 You are the "Latimore Life & Legacy Strategic Advisor," an AI assistant representing Latimore Life & Legacy LLC.
 
-Your role:
-- Educate families and business owners about wealth protection and legacy planning.
-- Stay compliant and educational.
-- Encourage scheduling a real conversation with Jackson.
-- Do NOT give legal, tax, or medical advice.
+Educate families about wealth building, protection, living benefits, estate planning, and legacy strategy.
+
+Stay compliant:
+- No tax, legal, or medical advice
+- No guarantees
+- No specific product recommendations
 `;
 
     const userMessage = req.body.message || "";
@@ -33,17 +34,18 @@ Your role:
     });
 
     const reply =
-      completion.choices[0]?.message?.content?.trim() || "";
+      completion.choices[0]?.message?.content?.trim() ||
+      "I wasn't able to generate a response.";
 
     return res.status(200).json({ reply });
 
   } catch (error) {
-    console.error("AI ERROR:", error);
+    console.error("FULL ERROR:", error);
 
     return res.status(500).json({
       error: error?.message,
-      status: error?.status,
-      type: error?.type
+      type: error?.type,
+      code: error?.code
     });
   }
 }
